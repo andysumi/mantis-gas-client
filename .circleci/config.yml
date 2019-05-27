@@ -13,7 +13,7 @@ commands:
       - run:
           name: install dependencies
           command: npm install
-      - restore_npm
+      - save_npm
   restore_npm:
     steps:
       - restore_cache:
