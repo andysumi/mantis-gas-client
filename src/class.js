@@ -13,24 +13,21 @@
       return results.issues[0];
     };
 
-    MantisClient.prototype.getAllIssues = function (pageSize, pageNo) {
-      var pSize = pageSize || 50;
-      var pNo = pageNo || 1;
-      var results = this.fetch_(Utilities.formatString('/issues?page_size=%d&page=%d', pSize,pNo), { 'method': 'get' });
-      return results.issues;
-    };
+    MantisClient.prototype.getIssues = function (projectId, filter, pageSize, pageNo) {
+      var params = {};
+      if (projectId) params['project_id'] = projectId;
+      if (filter) params['filter_id'] = filter;
+      if (pageSize) params['page_size'] = pageSize;
+      if (pageNo) params['page'] = pageNo;
+      var paramStr = (function (obj) {
+        var tmp = [];
+        for (var key in obj) {
+          tmp.push(Utilities.formatString('%s=%s', key, encodeURI(obj[key])));
+        }
+        return tmp.join('&');
+      })(params);
 
-    MantisClient.prototype.getIssuesInProject = function (projectId) {
-      if (!projectId) throw new Error('"projectId"は必須です');
-
-      var results = this.fetch_(Utilities.formatString('/issues?project_id=%d', projectId), { 'method': 'get' });
-      return results.issues;
-    };
-
-    MantisClient.prototype.getIssuesMatchedFilter = function (filter) {
-      if (!filter) throw new Error('"filter"は必須です');
-
-      var results = this.fetch_(Utilities.formatString('/issues?filter_id=%s', filter), { 'method': 'get' });
+      var results = this.fetch_(Utilities.formatString('/issues?%s', paramStr), { 'method': 'get' });
       return results.issues;
     };
 
