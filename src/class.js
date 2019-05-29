@@ -31,6 +31,30 @@
       return results.issues;
     };
 
+    MantisClient.prototype.createIssue = function (summary, description, projectName, categoryName, options) {
+      if (!summary) throw new Error('"summary"は必須です');
+      if (!description) throw new Error('"description"は必須です');
+      if (!projectName) throw new Error('"projectName"は必須です');
+      if (!categoryName) throw new Error('"categoryName"は必須です');
+
+      var issue = {
+        summary: summary,
+        description: description,
+        project: {
+          name: projectName
+        },
+        category: {
+          name: categoryName
+        }
+      };
+      for (var key in options) {
+        issue[key] = options[key];
+      }
+
+      var results = this.fetch_('/issues', { method: 'post', payload: issue });
+      return results.issue;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
@@ -38,7 +62,7 @@
         'muteHttpExceptions': true,
         'contentType': 'application/json; charset=utf-8',
         'headers': this.headers,
-        'payload': options.payload || {}
+        'payload': JSON.stringify(options.payload) || {}
       });
       return JSON.parse(response.getContentText('utf-8'));
     };

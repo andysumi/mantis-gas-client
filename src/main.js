@@ -27,3 +27,16 @@ function getSpecificIssue(issueId) { // eslint-disable-line no-unused-vars
 function getIssues(projectId, filter, pageSize, pageNo) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * Issueを作成する
+ * @param {String} summary 【必須】要約
+ * @param {String} description 【必須】説明
+ * @param {String} project 【必須】プロジェクト
+ * @param {String} category 【必須】カテゴリ
+ * @param {Object} options 【任意】その他の項目
+ * @return {Object} Issueのオブジェクト
+ */
+function createIssue(summary, description, project, category, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
