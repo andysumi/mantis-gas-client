@@ -20,6 +20,13 @@
       return results.issues;
     };
 
+    MantisClient.prototype.getIssuesInProject = function (projectId) {
+      if (!projectId) throw new Error('"projectId"は必須です');
+
+      var results = this.fetch_(Utilities.formatString('/issues?project_id=%d', projectId), { 'method': 'get' });
+      return results.issues;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
