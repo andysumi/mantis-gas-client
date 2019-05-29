@@ -34,3 +34,12 @@ function getAllIssues(issueId) { // eslint-disable-line no-unused-vars
 function getIssuesInProject(projectId) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * 特定のフィルターにマッチしたIssueの情報を取得する
+ * @param {Integer} filterId 【必須】filterのID
+ * @return {Array} Issueのオブジェクトの配列
+ */
+function getIssuesMatchedFilter(filterId) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
