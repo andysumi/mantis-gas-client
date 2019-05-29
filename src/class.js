@@ -27,10 +27,10 @@
       return results.issues;
     };
 
-    MantisClient.prototype.getIssuesMatchedFilter = function (filterId) {
-      if (!filterId) throw new Error('"filterId"は必須です');
+    MantisClient.prototype.getIssuesMatchedFilter = function (filter) {
+      if (!filter) throw new Error('"filter"は必須です');
 
-      var results = this.fetch_(Utilities.formatString('/issues?filter_id=%d', filterId), { 'method': 'get' });
+      var results = this.fetch_(Utilities.formatString('/issues?filter_id=%s', filter), { 'method': 'get' });
       return results.issues;
     };
 
