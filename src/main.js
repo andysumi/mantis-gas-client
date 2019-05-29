@@ -8,10 +8,20 @@ function create(token) { // eslint-disable-line no-unused-vars
 }
 
 /**
- * Issueの情報を取得する
+ * 特定のIssueの情報を取得する
  * @param {Integer} issueId 【必須】IssueのID
  * @return {Object} Issueのオブジェクト
  */
 function getSpecificIssue(issueId) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+ * すべてのIssueの情報を取得する
+ * @param {Integer} pageSize 【任意】1ページに返されるIssueの数。デフォルトは50
+ * @param {Integer} pageNo 【任意】ページ番号。デフォルトは1
+ * @return {Array} Issueの配列
+ */
+function getAllIssues(issueId) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }

@@ -13,6 +13,13 @@
       return results.issues[0];
     };
 
+    MantisClient.prototype.getAllIssues = function (pageSize, pageNo) {
+      var pSize = pageSize || 50;
+      var pNo = pageNo || 1;
+      var results = this.fetch_(Utilities.formatString('/issues?page_size=%d&page=%d', pSize,pNo), { 'method': 'get' });
+      return results.issues;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
