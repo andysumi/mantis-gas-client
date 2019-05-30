@@ -91,7 +91,12 @@
         'headers': this.headers,
         'payload': JSON.stringify(options.payload) || {}
       });
-      return JSON.parse(response.getContentText('utf-8'));
+
+      try {
+        return JSON.parse(response.getContentText('utf-8'));
+      } catch(e) {
+        return response.getContentText('utf-8');
+      }
     };
 
     return MantisClient;
