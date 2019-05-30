@@ -106,6 +106,15 @@
       return (results.code) ? results : results.issue;
     };
 
+    MantisClient.prototype.deleteIssueNote = function (issueId, issueNoteId) {
+      if (!issueId) throw new Error('"issueId"は必須です');
+      if (!issueNoteId) throw new Error('"issueNoteId"は必須です');
+
+      var results = this.fetch_(Utilities.formatString('/issues/%d/notes/%d', issueId, issueNoteId), { method: 'delete' });
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.issue;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {

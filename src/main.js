@@ -73,3 +73,13 @@ function deleteIssue(issueId) { // eslint-disable-line no-unused-vars
 function addIssueNote(issueId, viewStateName, text, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * Issueノートを削除する
+ * @param {Integer} issueId 【必須】IssueのID
+ * @param {Integer} issueNoteId 【必須】IssueノートのID
+ * @return {Object} Issueのオブジェクト
+ */
+function deleteIssueNote(issueId) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
