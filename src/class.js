@@ -10,7 +10,8 @@
       if (!issueId) throw new Error('"issueId"は必須です');
 
       var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { 'method': 'get' });
-      return results.issues[0];
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.issues[0];
     };
 
     MantisClient.prototype.getIssues = function (projectId, filter, pageSize, pageNo) {
@@ -28,7 +29,8 @@
       })(params);
 
       var results = this.fetch_(Utilities.formatString('/issues?%s', paramStr), { 'method': 'get' });
-      return results.issues;
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.issues;
     };
 
     MantisClient.prototype.createIssue = function (summary, description, projectName, categoryName, options) {
@@ -52,7 +54,8 @@
       }
 
       var results = this.fetch_('/issues', { method: 'post', payload: issue });
-      return results.issue;
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.issue;
     };
 
     MantisClient.prototype.updateIssue = function (issueId, statusName, handlerName, options) {
@@ -72,7 +75,8 @@
       }
 
       var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { method: 'patch', payload: issue });
-      return results.issues[0];
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.issues[0];
     };
 
     MantisClient.prototype.deleteIssue = function (issueId) {
