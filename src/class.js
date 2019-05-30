@@ -55,6 +55,26 @@
       return results.issue;
     };
 
+    MantisClient.prototype.updateIssue = function (issueId, statusName, handlerName, options) {
+      if (!issueId) throw new Error('"issueId"は必須です');
+
+      var issue = {};
+      if (statusName) {
+        issue['status'] = {};
+        issue['status']['name'] = statusName;
+      }
+      if (handlerName) {
+        issue['handler'] = {};
+        issue['handler']['name'] = handlerName;
+      }
+      for (var key in options) {
+        issue[key] = options[key];
+      }
+
+      var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { method: 'patch', payload: issue });
+      return results.issues[0];
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
