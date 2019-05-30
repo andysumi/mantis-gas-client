@@ -75,6 +75,13 @@
       return results.issues[0];
     };
 
+    MantisClient.prototype.deleteIssue = function (issueId) {
+      if (!issueId) throw new Error('"issueId"は必須です');
+
+      var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { 'method': 'delete' });
+      return results;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {

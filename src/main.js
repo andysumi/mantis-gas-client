@@ -52,3 +52,12 @@ function createIssue(summary, description, project, category, options) { // esli
 function updateIssue(issueId, statusName, handlerName, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * Issueを削除する
+ * @param {Integer} issueId 【必須】IssueのID
+ * @return {Object} Issueのオブジェクト
+ */
+function deleteIssue(issueId) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
