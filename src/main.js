@@ -61,3 +61,15 @@ function updateIssue(issueId, statusName, handlerName, options) { // eslint-disa
 function deleteIssue(issueId) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * Issueノートを追加する
+ * @param {Integer} issueId 【必須】IssueのID
+ * @param {String} viewStateName 【必須】表示状態("public or private")
+ * @param {String} text 【必須】テキスト
+ * @param {Object} options 【任意】その他の項目
+ * @return {Object} Issueのオブジェクト
+ */
+function addIssueNote(issueId, viewStateName, text, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}

@@ -86,6 +86,26 @@
       return results;
     };
 
+    MantisClient.prototype.addIssueNote = function (issueId, viewStateName, text, options) {
+      if (!issueId) throw new Error('"issueId"は必須です');
+      if (!viewStateName) throw new Error('"viewStateName"は必須です');
+      if (!text) throw new Error('"text"は必須です');
+
+      var note = {
+        text: text,
+        view_state: {
+          name: viewStateName
+        }
+      };
+      for (var key in options) {
+        note[key] = options[key];
+      }
+
+      var results = this.fetch_(Utilities.formatString('/issues/%d/notes', issueId), { method: 'post', payload: note });
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.issue;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
