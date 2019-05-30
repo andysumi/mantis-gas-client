@@ -2,14 +2,14 @@
   var MantisClient = (function () {
     function MantisClient(token) {
       this.apiUrl = 'https://nohana.mantishub.io/api/rest';
-      this.headers = { 'Authorization': token };
+      this.headers = { Authorization: token };
       if (!token) throw new Error('"token"は必須です');
     }
 
     MantisClient.prototype.getSpecificIssue = function (issueId) {
       if (!issueId) throw new Error('"issueId"は必須です');
 
-      var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { 'method': 'get' });
+      var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { method: 'get' });
       // resultsに"code"を含む場合はエラー
       return (results.code) ? results : results.issues[0];
     };
@@ -28,7 +28,7 @@
         return tmp.join('&');
       })(params);
 
-      var results = this.fetch_(Utilities.formatString('/issues?%s', paramStr), { 'method': 'get' });
+      var results = this.fetch_(Utilities.formatString('/issues?%s', paramStr), { method: 'get' });
       // resultsに"code"を含む場合はエラー
       return (results.code) ? results : results.issues;
     };
@@ -82,18 +82,18 @@
     MantisClient.prototype.deleteIssue = function (issueId) {
       if (!issueId) throw new Error('"issueId"は必須です');
 
-      var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { 'method': 'delete' });
+      var results = this.fetch_(Utilities.formatString('/issues/%d', issueId), { method: 'delete' });
       return results;
     };
 
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
-        'method': options.method,
-        'muteHttpExceptions': true,
-        'contentType': 'application/json; charset=utf-8',
-        'headers': this.headers,
-        'payload': JSON.stringify(options.payload) || {}
+        method: options.method,
+        muteHttpExceptions: true,
+        contentType: 'application/json; charset=utf-8',
+        headers: this.headers,
+        payload: JSON.stringify(options.payload) || {}
       });
 
       try {
