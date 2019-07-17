@@ -115,6 +115,12 @@
       return (results.code) ? results : results.issue;
     };
 
+    MantisClient.prototype.getAllProjects = function () {
+      var results = this.fetch_('/projects', { method: 'get' });
+      // resultsに"code"を含む場合はエラー
+      return (results.code) ? results : results.projects;
+    };
+
     MantisClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {

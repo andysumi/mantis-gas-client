@@ -83,3 +83,11 @@ function addIssueNote(issueId, viewStateName, text, options) { // eslint-disable
 function deleteIssueNote(issueId, issueNoteId) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+ * すべてのProjectの情報を取得する
+ * @return {Array} Projectのオブジェクトの配列
+ */
+function getAllProjects() { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
